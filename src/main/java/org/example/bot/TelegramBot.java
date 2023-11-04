@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -106,6 +107,15 @@ public class TelegramBot extends TelegramLongPollingBot {
     private void defaultMsg(SendMessage response, String msg) throws TelegramApiException {
         response.setText(msg);
         execute(response);
+    }
+
+    private void defaultPhoto(SendMessage response, String msg) throws TelegramApiException {
+        response.setText(msg);
+
+        SendPhoto sendPhoto = new SendPhoto();
+        sendPhoto.getPhoto();
+
+        execute(sendPhoto);
     }
 
     public void sendMsgForm(String msg) throws TelegramApiException {
